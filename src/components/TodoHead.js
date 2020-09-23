@@ -1,5 +1,6 @@
 import React from "react";
 import styled, { css } from "styled-components";
+import { useTodoState } from "../TodoContext";
 
 const TodoHeadBlock = styled.div`
   ${props => css`
@@ -27,11 +28,24 @@ const TodoHeadBlock = styled.div`
 `;
 
 function TodoHead() {
+    const todos = useTodoState();
+    const undoneTasks = todos.filter(todo => !todo.done);
+
+    const today = new Date();
+    const dateString = today.toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+    });
+    const dayName = today.toLocaleDateString('en-US', {
+        weekday: 'long'
+    });
+
     return (
         <TodoHeadBlock>
-            <h1>23th September 2020</h1>
-            <div className="day">Wednesday</div>
-            <div className="tasks-left">2 tasks left</div>
+            <h1>{dateString}</h1>
+            <div className="day">{dayName}</div>
+            <div className="tasks-left">{undoneTasks.length} tasks left</div>
         </TodoHeadBlock>
     );
 }
