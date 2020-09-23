@@ -4,6 +4,7 @@ import TodoTemplate from "./components/TodoTemplate";
 import TodoHead from "./components/TodoHead";
 import TodoList from "./components/TodoList";
 import TodoCreate from "./components/TodoCreate";
+import { TodoProvider } from "./TodoContext";
 
 const palette = {
     main: '#38d9a9',
@@ -21,16 +22,18 @@ const GlobalStyle = createGlobalStyle`
 
 function App() {
   return (
-    <ThemeProvider
-        theme={{palette}}
-    >
-      <GlobalStyle/>
-      <TodoTemplate>
-          <TodoHead/>
-          <TodoList/>
-          <TodoCreate/>
-      </TodoTemplate>
-    </ThemeProvider>
+      <TodoProvider>
+        <ThemeProvider
+            theme={{palette}}
+        >
+          <GlobalStyle/>
+          <TodoTemplate>
+              <TodoHead/>
+              <TodoList/>
+              <TodoCreate/>
+          </TodoTemplate>
+        </ThemeProvider>
+      </TodoProvider>
   );
 }
 
