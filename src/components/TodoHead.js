@@ -1,9 +1,13 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 const TodoHeadBlock = styled.div`
+  ${props => css`
+            border-bottom: 1px solid ${props.theme.palette.back};
+        `}
+    
   padding: 48px 32px 24px 32px;
-  border-bottom: 1px solid #e9ecef;
+  
   h1 {
     margin: 0;
     font-size: 36px;

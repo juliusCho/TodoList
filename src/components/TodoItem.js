@@ -6,13 +6,18 @@ const Remove = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #dee2e6;
   font-size: 24px;
   cursor: pointer;
   padding-left: 5px;
-  &:hover {
-    color: #ff6b6b;
-  }
+  ${props => {
+      const { highLight, border } = props.theme.palette;
+      return css`
+          color: ${border};
+          &:hover {
+            color: ${highLight};
+          }
+        `}
+    }
   display: none;
 `;
 
@@ -32,19 +37,21 @@ const CheckCircle = styled.div`
   width: 32px;
   height: 32px;
   border-radius: 16px;
-  border: 1px solid #ced4da;
+  ${props => css`border: 1px solid ${props.theme.palette.paleGray};`};
   font-size: 24px;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-right: 20px;
   cursor: pointer;
-  ${props => 
-    props.done &&
-    css`
-      border: 1px solid #38d9a9;
-      color: #38d9a9;
-    `}
+  ${props => {
+        const mainColor = props.theme.palette.main;
+        return props.done &&
+        css`
+          border: 1px solid ${mainColor};
+          color: ${mainColor};
+        `}
+    }
 `;
 
 const Text = styled.div`
@@ -54,7 +61,7 @@ const Text = styled.div`
   ${props => 
     props.done &&
     css`
-      color: #ced4da;
+      color: ${props.theme.palette.paleGray};
     `}
 `;
 
